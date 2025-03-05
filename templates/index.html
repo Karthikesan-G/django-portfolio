@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block start %}
+
+    <main>
+        <!--? Hero Area Start-->
+        <div class="slider-area">
+            <div class="single-slider slider-height d-flex align-items-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-12 col-lg-10 col-md-10 col-sm-10">
+                            <!-- Hero Caption -->
+                            <div class="hero__caption">
+                                <h1>Karthik.</h1>
+                                <p>Sr. Software Engineer</p>
+                                {% comment %} <p class="cd-headline letters scale">Head of design at
+                                    <a href="#" class="cd-words-wrapper">
+                                        <b class="is-visible">Calvino</b>
+                                        <b>Spondon</b>
+                                        <b>Infix</b>
+                                        <b>Directory</b>
+                                    </a>
+                                </p> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Hero Area End-->
+        <!--? About 1 Start-->
+        {% comment %} <section class="about-area section-padding40">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-6 col-md-10">
+                    <div class="about-caption mb-50">
+                        <!-- Section Tittle -->
+                        <div class="section-tittle mb-35">
+                            <h2>About</h2>
+                        </div>
+                        <p>For the past {{ about_me_details.experience }} years, software engineering has been the core of my professional journey. During this time, I've evolved from a novice coder to a well-rounded software engineer. It's been a dynamic and exhilarating experience, filled with continuous learning and growth.</p>
+
+                        <p>At present, my career has taken me to {{ about_me_details.curr_company }} in {{ about_me_details.curr_company_loc }}, where I serve as a full-time Software Engineer. In this role, similar to my previous freelance experiences, I've been working remotely for around two years.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-img">
+                        <img src="{% static 'assets/img/gallery/about1.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-40">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="experience">
+                        <span>{{ about_me_details.experience }} years</span>
+                        <p>of experience</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="experience">
+                        <span>$40M+</span>
+                        <p>invested in projects I was<br> involved in</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="experience">
+                        <span>Multiple</span>
+                        <p>industry awards</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section> {% endcomment %}
+        <!-- About  End-->
+        <!--? May-about Start -->
+        <div class="may-about section-padding40">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle2 mb-30">
+                            <h2>Experience</h2>
+                        </div>
+                    </div>
+
+                    {% for company_detail in about_me_details.company_details %}
+                        {% for company_name, jobs in company_detail.items %}
+                            <div class="col-lg-12">
+                                <div class="section-title2 mb-15">
+                                    <h2 style="color: white;">{{ company_name }}</h2>
+                                </div>
+                            </div>
+                            {% for job in jobs %}
+                                <div class="col-xl-12">
+                                    <div class="single-about">
+                                        <div class="tittle-experience">
+                                            <h3>{{ job.job_title }}</h3>
+                                            <p>{{ job.job_range }}</p>
+                                        </div>
+                                        <div class="experience-link">
+                                            <a href="#">{{ job.job_loc }}<i class="fas fa-external-link-alt"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+
+                    <div class="col-lg-12">
+                        <div class="section-tittle2 mb-30 pt-50">
+                            <h2>Education</h2>
+                        </div>
+                    </div>
+
+                    {% for educations in about_me_details.educations %}
+                        <div class="col-xl-12">
+                            <div class="single-about">
+                                <div class="tittle-experience">
+                                    <h3>{{ educations.edu_name }}</h3>
+                                    <p>{{ educations.edu_deg_grade }}</p>
+                                </div>
+                                <div class="experience-link">
+                                    <a href="#">{{ educations.edu_loc }}<i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- May-about End -->
+        <!--? My Expertise Start -->
+        <div class="our-services pt-top section-bg1">
+            <div class="container">
+                <div class="rwo">
+                    <div class="col-xl-12">
+                        <div class="section-tittle mb-75 text-center">
+                            <h2>My Expertise</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-contnet-center">
+                    {% for expertise in  about_me_details.expertises %}
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="single-services mb-30">
+                                <div class="services-cap">
+                                    <h5>{{ expertise.ex_name1 }}<br> {{ expertise.ex_name2 }}</h5>
+                                    <p>{{ expertise.ex_con }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- My Expertise End -->
+        <!--? Gallery Area Start -->
+        <div class="gallery-area section-padding40">
+            {% comment %} <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle mb-60">
+                            <h2>Selected Portfolios</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="offset-xl-1 col-xl-5 col-lg-6 col-md-6 col-sm-6">
+                        <div class="box snake mb-30">
+                            <div class="gallery-img small-img " style="background-image: url({% static 'assets/img/gallery/gallery1.png' %});"></div>
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <a href="{% static 'assets/img/gallery/gallery1.png' %}" class="img-pop-up"><i class="ti-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 ol-lg-6 col-lg-6 col-md-6 col-sm-6">
+                        <div class="box snake mb-30">
+                            <div class="gallery-img small-img " style="background-image: url({% static 'assets/img/gallery/gallery2.png' %});"></div>
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <a href="{% static 'assets/img/gallery/gallery2.png' %}" class="img-pop-up"><i class="ti-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offset-xl-1 col-xl-5 col-lg-6 col-md-6 col-sm-6">
+                        <div class="box snake mb-30">
+                            <div class="gallery-img small-img " style="background-image: url({% static 'assets/img/gallery/gallery3.png' %});"></div>
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <a href="{% static 'assets/img/gallery/gallery2.png' %}" class="img-pop-up"><i class="ti-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-6 col-md-6 col-sm-6">
+                        <div class="box snake mb-30">
+                            <div class="gallery-img small-img " style="background-image: url({% static 'assets/img/gallery/gallery4.png' %});"></div>
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <a href="{% static 'assets/img/gallery/gallery3.png' %}" class="img-pop-up"><i class="ti-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> {% endcomment %}
+        <!-- Gallery Area End -->
+    </main>
+
+
+{% endblock start %}
